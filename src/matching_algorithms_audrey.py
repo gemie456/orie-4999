@@ -32,7 +32,7 @@ C = C.loc[mentees_list, mentors_list].copy()
 TAU = 0.40      # minimum compatibility threshold
 SOLVER_TIME_LIMIT = None  # you can set a time limit in seconds if needed
 USE_FIELD_PROTECTION = True
-FIELD_POPULARITY_THRESHOLD = 0.02 #0.1
+FIELD_POPULARITY_THRESHOLD = 0.3 #0.1
 FLEXIBILITY_WEIGHT = 0.3 #0.3
 
 # ---------- Mentor capacity + prefs ----------
@@ -117,11 +117,18 @@ if USE_FIELD_PROTECTION:
             field_pop = popular_fields[primary_field]
             popularity_ratio = 0.25 + 0.25 * (field_pop / max_demand)
 
+            # mentor_fields = [
+            #     str(mentor_row.get(f"Field_{k}", "")).strip()
+            #     for k in range(1, 6)
+            #     if str(mentor_row.get(f"Field_{k}", "")).strip()
+            #     not in ["None", "", "nan"]
+            # ]
+
             mentor_fields = [
                 str(mentor_row.get(f"Field_{k}", "")).strip()
                 for k in range(1, 6)
                 if str(mentor_row.get(f"Field_{k}", "")).strip()
-                not in ["None", "", "nan"]
+                in popular_fields
             ]
             num_fields = len(mentor_fields)
             flexibility_score = num_fields / 5

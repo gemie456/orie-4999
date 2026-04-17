@@ -60,8 +60,8 @@ USE_CONSTRAINED_PRIORITY = True   # Solution 2: sort mentees hardest-to-place fi
 USE_POPULARITY_RESERVE   = True   # Solution 1: reserve capacity for popular mentors
 
 # Solution 1 parameters
-POPULARITY_THRESHOLD      = 0.20  # top 20% of mentors classified as "popular"
-POPULAR_BATCH_RESERVE_FRAC = 0.50 # popular mentors fill at most 50% capacity per batch
+POPULARITY_THRESHOLD      = 0.30  # top 20% of mentors classified as "popular"
+POPULAR_BATCH_RESERVE_FRAC = 0.25 # popular mentors fill at most 50% capacity per batch
 
 # ---------- Mentor capacity + prefs ----------
 def safe_capacity(v):

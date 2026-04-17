@@ -111,8 +111,13 @@ def evaluate_batch(batch_path):
     load_cv      = load_std / load_mean if load_mean > 0 else 0
 
     loads_sorted = sorted(mentor_loads.values)
-    n    = len(loads_sorted)
-    gini = (
+    n = len(loads_sorted)
+    if sum(loads_sorted) == 0:
+        gini = 0
+    elif n == 0:
+        gini = -1
+    else:
+        gini = (
         2 * sum((i + 1) * v for i, v in enumerate(loads_sorted))
     ) / (n * sum(loads_sorted)) - (n + 1) / n
 
